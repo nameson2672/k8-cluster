@@ -2,24 +2,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: flaskdemo
-  name: flaskdemo
+    app: nginx
+  name: nginx
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: flaskdemo
+      app: nginx
   strategy: {}
   template:
     metadata:
       labels:
-        app: flaskdemo
+        app: nginx
     spec:
       containers:
-      - image: raj80dockerid/test:6
-        name: flaskdemo
-        resources: {}
-status: {}
+      - image: nginx:1.14.2
+        name: nginx
+        ports:
+        - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -33,4 +33,4 @@ spec:
   - port: 80
     targetPort: 5000
   selector:
-    app: flaskdemo
+    app: nginx
