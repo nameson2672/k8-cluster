@@ -18,7 +18,7 @@ spec:
         app: static-app
     spec:
       containers:
-      - image: nameson/devops-project-app:v1.0
+      - image: nameson/devops-project-app:v2.0
         name: static-app
         resources: {}
 status: {}
