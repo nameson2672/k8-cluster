@@ -11,7 +11,7 @@ spec:
     path: djangoapp
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: django
+    namespace: django-app
   syncPolicy:
     automated:
       prune: true
