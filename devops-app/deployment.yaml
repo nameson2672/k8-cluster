@@ -3,23 +3,23 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: flaskdemo
-  name: flaskdemo
+    app: static-app
+  name: static-app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: flaskdemo
+      app: static-app
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: flaskdemo
+        app: static-app
     spec:
       containers:
-      - image: raj80dockerid/test:6
-        name: flaskdemo
+      - image: nameson/devops-project-app:v1.0
+        name: static-app
         resources: {}
 status: {}
 ---
@@ -35,4 +35,4 @@ spec:
   - port: 80
     targetPort: 5000
   selector:
-    app: flaskdemo
+    app: static-app

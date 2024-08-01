@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: django-app
+  name: static-app
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: 'https://github.com/nameson2672/k8-cluster'
     targetRevision: HEAD
-    path: djangoapp
+    path: devops-app
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: django-app
+    namespace: static-app
   syncPolicy:
     automated:
       prune: true
