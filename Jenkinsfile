@@ -5,9 +5,12 @@ pipeline {
         GIT_REPO = 'https://github.com/nameson2672/k8-cluster.git'
         BRANCH = 'main'// This should be the ID of your secret text credential
     }
-    stage('Clone repository') {
-        checkout scm
-    }
+
+    stages {
+
+        stage('Clone repository') {
+            checkout scm
+        }
 
 
         stage('Make Changes') {
@@ -36,4 +39,5 @@ pipeline {
       }
             }
         }
+    }
 }
