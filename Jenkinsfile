@@ -7,11 +7,16 @@ pipeline {
     }
 
     stages {
-
-        stage('Clone repository') {
-            checkout scm
+        stage('Clone Repository') {
+            steps {
+                withCredentials([string(credentialsId: env.CREDENTIALS_ID, variable: 'GITHUB_TOKEN')]) {
+                    script {
+                        // Use the token for HTTPS authentication
+                        sh "git clone https://github.com/nameson2672/k8-cluster.git"
+                    }
+                }
+            }
         }
-
 
         stage('Make Changes') {
             steps {
