@@ -1,12 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        // Initialize variables
-        GIT_USERNAME = 'SahadevDahit'  // Update with your GitHub username
-        GIT_TOKEN_CREDENTIALS_ID = 'access-token'  // Update with the ID of your GitHub PAT credential
-    }
-
     parameters {
         string(name: 'DOCKERTAG', defaultValue: '', description: 'Docker tag for the image')
     }
@@ -14,10 +8,14 @@ pipeline {
     stages {
 
     stage('Clone repository') {
-        checkout scm
+        steps {
+                // Specify the repository URL and branch explicitly
+                git branch: 'main', url: 'https://github.com/nameson2672/k8-cluster.git'
+            }
     }
 
     stage('Update GIT') {
+         steps {
         script {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_TOKEN', usernameVariable: 'GIT_USERNAME')]) {
@@ -39,6 +37,7 @@ pipeline {
                     '''
                 }
             }
+        }
         }
     }
 }
