@@ -20,7 +20,7 @@ pipeline {
                     // Example: Create a new file and add content
                     sh 'echo "Hello, World!" > newfile.txt'
                     sh 'git add newfile.txt'
-                    sh 'git commit -m "Add new file"'
+                    sh 'git commit -m "Add new file "'
                 }
             }
         }
