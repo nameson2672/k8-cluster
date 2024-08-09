@@ -22,7 +22,7 @@ node {
                         export GIT_ASKPASS=$(mktemp)
                         echo "echo \\"$GIT_TOKEN\\"" > $GIT_ASKPASS
                         chmod +x $GIT_ASKPASS
-                        git push https://@github.com/nameson2672/k8-cluster.git HEAD:main
+                        git push https://github.com/nameson2672/k8-cluster.git HEAD:main
                         rm $GIT_ASKPASS
                     '''
                 }
