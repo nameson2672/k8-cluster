@@ -1,5 +1,17 @@
-node {
-    def app
+pipeline {
+    agent any
+
+    environment {
+        // Initialize variables
+        GIT_USERNAME = 'SahadevDahit'  // Update with your GitHub username
+        GIT_TOKEN_CREDENTIALS_ID = 'access-token'  // Update with the ID of your GitHub PAT credential
+    }
+
+    parameters {
+        string(name: 'DOCKERTAG', defaultValue: '', description: 'Docker tag for the image')
+    }
+
+    stages {
 
     stage('Clone repository') {
         checkout scm
@@ -11,7 +23,7 @@ node {
                 withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_TOKEN', usernameVariable: 'GIT_USERNAME')]) {
                     sh 'git config user.email "namesongaudel.ng@gmail.com"'
                     sh 'git config user.name Jenkins'
-                    sh 'echo "Hello, World!" >> newfile.txt'
+                    sh "echo ${params.DOCKERTAG} >> newfile.txt"
                     sh 'git add .'
                     sh 'git commit -m "Done by Jenkins Job changemanifest"'
                     
@@ -29,4 +41,5 @@ node {
             }
         }
     }
+}
 }
