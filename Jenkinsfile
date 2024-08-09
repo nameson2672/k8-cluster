@@ -10,7 +10,7 @@ node {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                 withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_TOKEN', usernameVariable: 'GIT_USERNAME')]) {
                     sh 'git config user.email "namesongaudel.ng@gmail.com"'
-                    sh 'git config user.name "Nameson Gaudel"'
+                    sh 'git config user.name nameson2672'
                     sh 'echo "Hello, World!" > newfile.txt'
                     sh 'git add newfile.txt'
                     sh 'git commit -m "Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}"'
