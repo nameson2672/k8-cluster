@@ -18,6 +18,8 @@ pipeline {
             steps {
                 script {
                     // Example: Create a new file and add content
+                    sh 'git config --global user.email "jankins@example.com"'
+                    git config --global user.name "Jankines Agent"
                     sh 'echo "Hello, World!" > newfile.txt'
                     sh 'git add newfile.txt'
                     sh 'git commit -m "Add new file "'
