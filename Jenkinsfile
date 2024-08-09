@@ -13,7 +13,7 @@ node {
                     sh 'git config user.name Nameson Gaudel'
                     sh 'echo "Hello, World!" > newfile.txt'
                     sh 'git add newfile.txt'
-                    sh 'git commit -m "Done by Jenkins Job changemanifest'
+                    sh 'git commit -m "Done by Jenkins Job changemanifest"'
                     
                     // Use a separate shell block to securely pass credentials
                     sh """
