@@ -3,8 +3,13 @@ pipeline {
 
     parameters {
         string(name: 'DOCKERTAG', defaultValue: '', description: 'Docker tag for the image')
+        choice(name: 'ENVIRONMENT', choices: ['dev', 'staging', 'prod'], description: 'Deployment environment')
     }
-
+       environment {
+        REPO_URL = 'https://github.com/nameson2672/k8-cluster.git'
+        REPO_DIR = 'devops-app'
+        HELM_VALUES_FILE = "values-${params.ENVIRONMENT}.yaml"
+    }
     stages {
 
     stage('Clone repository') {
@@ -21,7 +26,9 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_TOKEN', usernameVariable: 'GIT_USERNAME')]) {
                     sh 'git config user.email "namesongaudel.ng@gmail.com"'
                     sh 'git config user.name Jenkins'
-                    sh "echo ${params.DOCKERTAG} >> newfile.txt"
+                    sh """
+                    sed -i 's/^  tag:.*/  tag: "${params.DOCKERTAG}"/' ${REPO_DIR}/${HELM_VALUES_FILE}
+                    """
                     sh 'git add .'
                     sh 'git commit -m "Done by Jenkins Job changemanifest"'
                     
