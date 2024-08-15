@@ -1,3 +1,3 @@
 namespace: dev
 image:
-  tag: "4-stage"
+  tag: "5-stage"
