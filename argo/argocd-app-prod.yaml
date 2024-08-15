@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://your-repo-url.git'
+    repoURL: 'https://github.com/nameson2672/k8-cluster'
     targetRevision: HEAD
-    path: my-app
+    path: devops-app
     helm:
       valueFiles:
         - values-prod.yaml
